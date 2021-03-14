@@ -44,28 +44,32 @@ class Button extends React.Component {
       <button
       onClick={this.props.onClick}
       className="Button"
+      style={this.props.style || {}}
       >{this.props.value}
       </button>
     );
   }
 }
 
-const AltButton = (props) => {
-  return (
-    <button
-    onClick={props.onClick}
-    className="Button"
-    style={props.style || {}}
-    >{props.value}
-    </button>    
-  )
-}
+// buttons as a functional component
+// const AltButton = (props) => {
+//   return (
+//     <button
+//     onClick={props.onClick}
+//     className="Button"
+//     style={props.style || {}}
+//     >{props.value}
+//     </button>    
+//   )
+// }
   
 // this is the Parent component
 class Rectangle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {status:'x'};
+    this.state = {
+      status:null
+    };
   }
 
   render() {
@@ -97,15 +101,21 @@ class Rectangle extends React.Component {
           width: '100%',
           height: '100%'
         }} >
-          <AltButton 
+          <Button 
             value="x" 
+            style={{ 
+              width:'30px',
+              backgroundColor: this.state.status === 'x' ? 'blue' : 'white'
+            }}
             onClick={ () => this.setState({status: 'x'})} 
-            style={{ width:'30px'}}
           />
-          <AltButton 
+          <Button 
             value="o" 
+            style={{ 
+              width:'30px',
+              backgroundColor: this.state.status === 'o' ? 'blue' : 'white'
+            }}
             onClick={ () => this.setState({status: 'o'})} 
-            style={{ width:'30px'}}
           />
         </div>
     </div>
